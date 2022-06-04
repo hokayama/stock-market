@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Stock } from 'src/app/model/stock';
 
 @Component({
   selector: 'app-stock-item',
@@ -7,21 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StockItemComponent implements OnInit {
 
-  public name!:string;
-  public code!:string;
-  public price!:number;
-  public previousPrice!:number;
-  public positiveChange!: boolean;
-
+  public stock!: Stock;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.name = 'Teste Stock Company';
-    this.code = 'TSC';
-    this.price = 85;
-    this.previousPrice = 90;
-    this.positiveChange = this.price >= this.previousPrice;
+    this.stock = new Stock('Test Stock Company', 'TSC', 85, 80);
+  }
+
+  toggleFavorite(event: any ) {
+    console.log('We are toggling the favorite state for this stock.', event)
+    this.stock.favorite = !this.stock.favorite;
   }
 
 }
