@@ -1,13 +1,11 @@
 <p>stock-item works!</p>
-<div class="stock-container">
+<div class="stock-container"> *ngFor="let stock of stocks; index as i">
     <div class="name">{{stock.name + '(' + stock.code + ')'}}</div>
         <div class="price"
-        [class.positive]="stock.isPositiveChange()"
-        [class.negative]="!stock.isPositiveChange()">$ {{stock.price}}</div>
+        [class]="stock.isPositiveChange() ? 'positive' : 'negative'">
+        $ {{stock.price}}
+        </div>
 
-        <!-- [ngStyle]="stockStyles">${{stock.price}}</div> -->
-        <!-- [ngClass]="stockClasses">$ {{stock.price}}*/</div> -->
-        
-        <button (click)="toggleFavorite($event)"
-            [disabled]="stock.favorite">Add to Favorite</button>   
+        <button (click)="toggleFavorite($event, i)"
+                [disabled]="stock.favorite">Add to Favorite</button>
 </div>
